@@ -64,10 +64,10 @@
             .bento-item-5 { grid-column: span 2; }
         }
         @media (max-width: 768px) {
-            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 320px; }
-            #filter-sidebar { bottom: 0; top: auto; height: 85vh; width: 100%; border-radius: 40px 40px 0 0; transform: translateY(100%); }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1rem; }
+            #filter-sidebar { bottom: 0; top: auto; height: 75vh; width: 100%; border-radius: 30px 30px 0 0; transform: translateY(100%); }
             #search-container:focus-within { width: 100% !important; }
-            .bento-item-1, .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5 { grid-column: span 1; grid-row: span 1; }
+            .bento-item-1, .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5 { grid-column: span 1; grid-row: auto; min-height: 280px; }
         }
         
         .modal-overlay { opacity: 0; pointer-events: none; transition: all 0.4s ease; }
@@ -187,84 +187,84 @@
         <main class="container mx-auto px-4 py-16 min-h-screen">
             <!-- ================= STORE VIEW ================= -->
             <div id="store-view" class="view-section">
-                <section class="text-center mb-24 relative">
+                <section class="text-center mb-16 md:mb-24 relative">
                     <div class="absolute inset-0 bg-brand-accent/5 blur-[150px] rounded-full"></div>
-                    <span class="text-brand-accent text-xs font-black uppercase tracking-[0.6em] mb-8 block font-orbitron">CURATED PERFORMANCE</span>
-                    <h1 class="text-5xl md:text-7xl font-black font-orbitron text-white tracking-tighter leading-none">Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-600">Everyday.</span></h1>
-                    <p class="text-xl text-gray-600 max-w-4xl mx-auto mt-12 font-bold uppercase tracking-tight leading-relaxed">The ultimate collection of high-performance gadgets for your home, kitchen, and mobile lifestyle.</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-8 mt-16">
-                        <button onclick="router.navigate('store')" class="bg-brand-accent text-brand-dark font-black py-5 px-12 rounded-full hover:bg-green-400 transition-all transform hover:-translate-y-2 text-xs uppercase tracking-widest font-orbitron">SHOP GADGETS</button>
-                        <button class="bg-white/5 border border-white/10 text-white font-black py-5 px-12 rounded-full hover:bg-white/10 transition-all text-xs uppercase tracking-widest backdrop-blur-md font-orbitron">MOBILE & LAPTOPS</button>
+                    <span class="text-brand-accent text-[10px] md:text-xs font-black uppercase tracking-[0.6em] mb-6 md:mb-8 block font-orbitron">CURATED PERFORMANCE</span>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black font-orbitron text-white tracking-tighter leading-none">Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-600">Everyday.</span></h1>
+                    <p class="text-base md:text-xl text-gray-600 max-w-4xl mx-auto mt-8 md:mt-12 font-bold uppercase tracking-tight leading-relaxed px-4">The ultimate collection of high-performance gadgets for your home, kitchen, and mobile lifestyle.</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 mt-10 md:mt-16 px-6">
+                        <button onclick="router.navigate('store')" class="w-full sm:w-auto bg-brand-accent text-brand-dark font-black py-4 md:py-5 px-10 md:px-12 rounded-full hover:bg-green-400 transition-all transform hover:-translate-y-2 text-[10px] md:text-xs uppercase tracking-widest font-orbitron">SHOP GADGETS</button>
+                        <button class="w-full sm:w-auto bg-white/5 border border-white/10 text-white font-black py-4 md:py-5 px-10 md:px-12 rounded-full hover:bg-white/10 transition-all text-[10px] md:text-xs uppercase tracking-widest backdrop-blur-md font-orbitron">MOBILE & LAPTOPS</button>
                     </div>
                 </section>
 
                 <div class="bento-grid">
                     <!-- NEURAL WORKSPACE CORE -->
-                    <div class="bento-item-1 glass-card rounded-[40px] p-10 overflow-hidden relative group cursor-pointer">
+                    <div class="bento-item-1 glass-card rounded-[30px] md:rounded-[40px] p-6 md:p-10 overflow-hidden relative group cursor-pointer">
                         <div class="absolute inset-0 product-overlay z-10"></div>
                         <img src="assets/epicenter_hub.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-[2s]">
                         <div class="relative z-20 h-full flex flex-col justify-between">
-                            <span class="bg-brand-accent text-brand-dark text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-widest w-fit">APEX HUB</span>
+                            <span class="bg-brand-accent text-brand-dark text-[9px] md:text-[10px] font-black px-4 md:px-5 py-2 rounded-full uppercase tracking-widest w-fit">APEX HUB</span>
                             <div class="mt-auto">
-                                <h3 class="text-3xl md:text-4xl font-black text-white font-orbitron mb-4 uppercase leading-none">SMART HOME <br><span class="text-brand-accent">CONTROLLER</span></h3>
-                                <p class="text-gray-400 text-lg font-bold uppercase mb-8">Ultimate Mobile & Laptop Command Center. $299</p>
-                                <button class="bg-brand-accent text-brand-dark font-black py-4 px-10 rounded-full transition-all text-xs uppercase tracking-widest font-orbitron hover:bg-green-400 shadow-2xl">BUY NOW</button>
+                                <h3 class="text-2xl md:text-3xl lg:text-4xl font-black text-white font-orbitron mb-3 md:mb-4 uppercase leading-none">SMART HOME <br><span class="text-brand-accent">CONTROLLER</span></h3>
+                                <p class="text-gray-400 text-sm md:text-lg font-bold uppercase mb-6 md:mb-8">Ultimate Mobile & Laptop Command Center. $299</p>
+                                <button class="bg-brand-accent text-brand-dark font-black py-3 md:py-4 px-8 md:px-10 rounded-full transition-all text-[10px] uppercase tracking-widest font-orbitron hover:bg-green-400 shadow-2xl w-full sm:w-auto">BUY NOW</button>
                             </div>
                         </div>
                     </div>
                     
                     <!-- QUANTUM KITCHEN ENGINE -->
-                    <div class="bento-item-2 glass-card rounded-[50px] p-10 relative overflow-hidden group">
+                    <div class="bento-item-2 glass-card rounded-[30px] md:rounded-[50px] p-6 md:p-10 relative overflow-hidden group">
                         <div class="absolute inset-0 product-overlay z-10"></div>
                         <img src="assets/fusion_blender.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-[2s]">
                         <div class="relative z-20 flex flex-col h-full">
                             <div class="mt-auto">
-                                <h3 class="text-2xl font-black text-white font-orbitron uppercase leading-tight">PROFESSIONAL <br>AI BLENDER</h3>
-                                <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-2">Precision Blade AI</p>
-                                <span class="text-brand-accent font-black text-2xl mt-4 block">$149</span>
+                                <h3 class="text-xl md:text-2xl font-black text-white font-orbitron uppercase leading-tight">PROFESSIONAL <br>AI BLENDER</h3>
+                                <p class="text-[9px] md:text-[10px] text-gray-500 font-black uppercase tracking-widest mt-2">Precision Blade AI</p>
+                                <span class="text-brand-accent font-black text-xl md:text-2xl mt-3 md:mt-4 block">$149</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- ATMOSPHERE GUARD AI -->
-                    <div class="bento-item-3 glass-card rounded-[50px] p-10 relative overflow-hidden group">
+                    <div class="bento-item-3 glass-card rounded-[30px] md:rounded-[50px] p-6 md:p-10 relative overflow-hidden group">
                         <div class="absolute inset-0 product-overlay z-10"></div>
                         <img src="assets/pureair_purifier.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-[2s]">
                         <div class="relative z-20 flex flex-col h-full">
-                            <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[9px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest w-fit mb-4">DAILY ESSENTIAL</span>
+                            <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[8px] md:text-[9px] font-black px-3 md:px-4 py-1.5 rounded-lg uppercase tracking-widest w-fit mb-4">DAILY ESSENTIAL</span>
                             <div class="mt-auto">
-                                <h3 class="text-3xl font-black text-white font-orbitron uppercase mb-3 leading-tight text-white">SMART AIR <br>PURIFIER</h3>
-                                <p class="text-gray-500 text-xs font-black uppercase tracking-widest leading-relaxed mb-8">Medical-Grade HEPA filtration.</p>
+                                <h3 class="text-2xl md:text-3xl font-black text-white font-orbitron uppercase mb-3 leading-tight">SMART AIR <br>PURIFIER</h3>
+                                <p class="text-gray-500 text-[10px] md:text-xs font-black uppercase tracking-widest leading-relaxed mb-6 md:mb-8">Medical-Grade HEPA filtration.</p>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-3xl font-black text-brand-accent">$399</span>
-                                    <button class="w-12 h-12 rounded-full bg-brand-accent text-brand-dark flex items-center justify-center hover:bg-green-400 transition-all"><i data-lucide="arrow-right"></i></button>
+                                    <span class="text-2xl md:text-3xl font-black text-brand-accent">$399</span>
+                                    <button class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand-accent text-brand-dark flex items-center justify-center hover:bg-green-400 transition-all"><i data-lucide="arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- VELOCITY PERSONAL CARE -->
-                    <div class="bento-item-4 glass-card rounded-[50px] p-10 relative overflow-hidden group">
+                    <div class="bento-item-4 glass-card rounded-[30px] md:rounded-[50px] p-6 md:p-10 relative overflow-hidden group">
                         <div class="absolute inset-0 product-overlay z-10"></div>
                         <img src="assets/precision_groomer.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-[2s]">
                         <div class="relative z-20 flex flex-col h-full">
                             <div class="mt-auto">
-                                <h3 class="text-2xl font-black text-white font-orbitron uppercase leading-tight">PERSONAL <br>GROOMING KIT</h3>
-                                <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-2">Optic Grooming</p>
-                                <span class="text-brand-accent font-black text-2xl mt-4 block">$89</span>
+                                <h3 class="text-xl md:text-2xl font-black text-white font-orbitron uppercase leading-tight">PERSONAL <br>GROOMING KIT</h3>
+                                <p class="text-[9px] md:text-[10px] text-gray-500 font-black uppercase tracking-widest mt-2">Optic Grooming</p>
+                                <span class="text-brand-accent font-black text-xl md:text-2xl mt-3 md:mt-4 block">$89</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Blog Teaser -->
-                    <div class="bento-item-5 glass-card rounded-[40px] p-10 lg:p-12 flex flex-col justify-center overflow-hidden relative group cursor-pointer" onclick="router.navigate('blog')">
+                    <div class="bento-item-5 glass-card rounded-[30px] md:rounded-[40px] p-8 md:p-10 lg:p-12 flex flex-col justify-center overflow-hidden relative group cursor-pointer" onclick="router.navigate('blog')">
                          <div class="absolute inset-0 bg-gradient-to-br from-brand-accent/5 to-brand-dark z-0"></div>
-                         <div class="absolute top-0 right-0 p-12 opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-1000"><i data-lucide="cpu" class="w-64 h-64"></i></div>
+                         <div class="absolute top-0 right-0 p-8 md:p-12 opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-1000"><i data-lucide="cpu" class="w-48 h-48 md:w-64 md:h-64"></i></div>
                          <div class="relative z-20 max-w-2xl">
-                            <span class="text-brand-accent text-[10px] font-black uppercase tracking-[0.5em] mb-6 block font-orbitron">Neural Editorial</span>
-                            <h3 class="text-3xl md:text-4xl font-black mb-6 text-white group-hover:text-brand-accent transition-colors font-orbitron uppercase tracking-tighter leading-[1.1]">The Future of Performance in Daily Life</h3>
-                            <p class="text-gray-500 text-base mb-10 font-bold uppercase tracking-widest line-clamp-2">How premium gadgets are redefining the modern home and workspace through high-performance efficiency.</p>
-                            <span class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.4em] text-white border-b-2 border-white/10 pb-2 group-hover:border-brand-accent transition-all">Full Intel Report <i data-lucide="arrow-right" class="w-5 h-5 ml-4"></i></span>
+                            <span class="text-brand-accent text-[8px] md:text-[10px] font-black uppercase tracking-[0.5em] mb-4 md:mb-6 block font-orbitron">Neural Editorial</span>
+                            <h3 class="text-2xl md:text-3xl lg:text-4xl font-black mb-4 md:mb-6 text-white group-hover:text-brand-accent transition-colors font-orbitron uppercase tracking-tighter leading-[1.1]">The Future of Performance in Daily Life</h3>
+                            <p class="text-gray-500 text-xs md:text-base mb-8 md:mb-10 font-bold uppercase tracking-widest line-clamp-2">How premium gadgets are redefining the modern home and workspace through high-performance efficiency.</p>
+                            <span class="inline-flex items-center text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white border-b-2 border-white/10 pb-2 group-hover:border-brand-accent transition-all">Full Intel Report <i data-lucide="arrow-right" class="w-4 h-4 md:w-5 md:h-5 ml-3 md:ml-4"></i></span>
                          </div>
                     </div>
                 </div>
