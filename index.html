@@ -42,13 +42,21 @@
 
     <style>
         .glass-panel { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .glass-card:hover { transform: translateY(-10px); border-color: rgba(34, 197, 94, 0.3); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .glass-card:hover { transform: translateY(-8px) scale(1.01); border-color: rgba(34, 197, 94, 0.4); box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 20px rgba(34, 197, 94, 0.1); }
+        .glass-card:active { transform: scale(0.98); }
         
-        #search-container { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); width: 220px; }
-        #search-container:focus-within { width: 450px !important; box-shadow: 0 0 25px rgba(34, 197, 94, 0.4); border-color: #22c55e !important; }
+        #search-container { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); width: 180px; }
+        #search-container:focus-within { width: 400px !important; box-shadow: 0 0 30px rgba(34, 197, 94, 0.3); border-color: #22c55e !important; }
         
-        .product-overlay { background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); }
+        button, a { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        button:active { transform: scale(0.95); }
+        
+        .nav-link-underline { position: relative; }
+        .nav-link-underline::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #22c55e; transition: width 0.3s ease; }
+        .nav-link-underline:hover::after { width: 100%; }
+
+        .product-overlay { background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.4) 60%, transparent 100%); }
         .category-container:hover #slide-left, .category-container:hover #slide-right { opacity: 1; }
         
         .bento-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; }
@@ -68,6 +76,9 @@
             #filter-sidebar { bottom: 0; top: auto; height: 75vh; width: 100%; border-radius: 30px 30px 0 0; transform: translateY(100%); }
             #search-container:focus-within { width: 100% !important; }
             .bento-item-1, .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5 { grid-column: span 1; grid-row: auto; min-height: 280px; }
+            #search-container { width: 44px; padding: 0; }
+            #search-input { display: none; }
+            #search-container:focus-within #search-input { display: block; }
         }
         
         .modal-overlay { opacity: 0; pointer-events: none; transition: all 0.4s ease; }
@@ -136,34 +147,46 @@
 
     <div id="app-container">
         <!-- Header -->
-        <header class="sticky top-0 z-40 glass-panel border-b border-white/5 shadow-2xl pt-2">
-            <!-- Utility Bar -->
-            <div class="bg-black/90 py-3 hidden md:block border-b border-white/5">
-                <div class="container mx-auto px-4 flex justify-end space-x-10 text-[14px] font-black text-gray-500 tracking-[0.15em] uppercase">
-                    <a href="#" onclick="router.navigate('about'); return false;" class="px-2 hover:text-brand-accent transition-all">About Us</a>
-                    <a href="#" onclick="router.navigate('blog'); return false;" class="px-2 hover:text-brand-accent transition-all">Intel Report</a>
-                    <a href="#" class="px-2 hover:text-brand-accent transition-all">Track Order</a>
-                    <button id="open-auth-btn" class="hover:text-brand-accent transition-all flex items-center gap-3 px-6 border-l border-white/10 ml-6">
-                        <i data-lucide="user" class="w-4 h-4"></i> <span id="auth-btn-text">Sign In</span>
-                    </button>
+        <header class="sticky top-0 z-40 glass-panel border-b border-white/5 shadow-2xl">
+            <!-- Utility Bar (Global Access) -->
+            <div class="bg-black/95 py-2 border-b border-white/5 overflow-x-auto no-scrollbar">
+                <div class="container mx-auto px-4 flex justify-between md:justify-end items-center space-x-6 md:space-x-10 text-[10px] md:text-[11px] font-black text-gray-500 tracking-[0.2em] uppercase whitespace-nowrap">
+                    <div class="flex items-center space-x-6">
+                        <a href="#" onclick="router.navigate('about'); return false;" class="nav-link-underline hover:text-brand-accent transition-all">About</a>
+                        <a href="#" onclick="router.navigate('blog'); return false;" class="nav-link-underline hover:text-brand-accent transition-all">Intel</a>
+                        <a href="#" onclick="router.navigate('dashboard'); return false;" class="nav-link-underline hover:text-brand-accent transition-all">Tracking</a>
+                    </div>
+                    <div class="flex items-center space-x-6 border-l border-white/10 pl-6">
+                        <button id="open-auth-btn" class="hover:text-brand-accent transition-all flex items-center gap-2 group">
+                            <i data-lucide="zap" class="w-3 h-3 group-hover:animate-pulse"></i> <span id="auth-btn-text">Access Hub</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Main Nav -->
-            <div class="container mx-auto px-4 py-4">
-                <div class="flex justify-between items-center h-14">
-                    <a href="#" onclick="router.navigate('store'); return false;" class="flex items-center gap-4 shrink-0 group">
-                        <img src="assets/logo.jpg" alt="Logo" class="h-12 w-auto rounded-full border border-white/10 group-hover:border-brand-accent transition-all shadow-xl">
-                        <span class="text-2xl font-black tracking-tighter hidden sm:block uppercase font-orbitron">POWERLINK<span class="text-brand-accent">.GADGETS</span></span>
-                    </a>
+            <!-- Main Nav (Repositioned Logo) -->
+            <div class="container mx-auto px-4 py-3 md:py-4">
+                <div class="flex justify-between items-center h-12 md:h-14">
+                    <div class="flex items-center gap-4 md:gap-8">
+                        <a href="#" onclick="router.navigate('store'); return false;" class="flex items-center gap-3 shrink-0 group transform hover:scale-105 transition-transform duration-500">
+                            <img src="assets/logo.jpg" alt="Logo" class="h-10 md:h-12 w-auto rounded-full border border-white/10 group-hover:border-brand-accent transition-all shadow-xl">
+                            <span class="text-xl md:text-2xl font-black tracking-tighter uppercase font-orbitron">POWERLINK<span class="text-brand-accent">.GADGETS</span></span>
+                        </a>
+                        
+                        <!-- Persistent Main Page Button -->
+                        <button onclick="router.navigate('store')" class="hidden lg:flex items-center gap-2 px-5 py-2 bg-brand-accent/5 border border-brand-accent/20 rounded-full text-[9px] font-black uppercase tracking-[0.2em] text-brand-accent hover:bg-brand-accent hover:text-brand-dark transition-all group">
+                            <i data-lucide="layout-grid" class="w-3 h-3"></i> 
+                            <span>Core Registry</span>
+                        </button>
+                    </div>
 
-                    <div class="flex items-center space-x-8">
-                        <div id="search-container" class="relative hidden sm:block border border-white/5 rounded-full bg-black/40 overflow-hidden">
-                            <input id="search-input" placeholder="SEARCH LUXURY TECH..." class="bg-transparent py-3 pl-14 pr-6 w-full focus:outline-none text-xs tracking-[0.2em] font-black placeholder:text-gray-800 transition-all text-white">
-                            <i class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 w-5 h-5 group-focus-within:text-brand-accent transition-colors" data-lucide="search"></i>
+                    <div class="flex items-center space-x-4 md:space-x-8">
+                        <div id="search-container" class="relative border border-white/10 rounded-full bg-black/40 overflow-hidden group">
+                            <input id="search-input" placeholder="SEARCH..." class="bg-transparent py-2.5 md:py-3 pl-12 pr-6 w-full focus:outline-none text-[10px] tracking-[0.2em] font-black placeholder:text-gray-800 transition-all text-white">
+                            <i class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 w-4 h-4 group-focus-within:text-brand-accent transition-colors" data-lucide="search"></i>
                         </div>
-                        <button id="filter-btn" class="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all">
-                            <i data-lucide="sliders-horizontal" class="w-6 h-6"></i>
+                        <button id="filter-btn" class="p-2.5 md:p-3 bg-white/5 border border-white/10 rounded-full hover:bg-brand-accent hover:text-brand-dark hover:rotate-90 transition-all duration-500">
+                            <i data-lucide="sliders-horizontal" class="w-5 h-5 md:w-6 md:h-6"></i>
                         </button>
                     </div>
                 </div>
