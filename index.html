@@ -186,6 +186,12 @@
                             <i data-lucide="layout-grid" class="w-3 h-3"></i> 
                             <span>Core Registry</span>
                         </button>
+
+                        <!-- Temporary Surprise Button -->
+                        <button onclick="router.navigate('surprise')" class="flex items-center gap-2 px-5 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-[9px] font-black uppercase tracking-[0.2em] text-purple-400 hover:bg-purple-500 hover:text-white transition-all group animate-bounce">
+                            <i data-lucide="gift" class="w-3 h-3"></i> 
+                            <span>Surprize</span>
+                        </button>
                     </div>
 
                     <div class="flex items-center space-x-4 md:space-x-8">
@@ -446,6 +452,17 @@
                     </div>
                 </div>
             </div>
+            <!-- ================= SURPRISE VIEW ================= -->
+            <div id="surprise-view" class="view-section hidden opacity-0 transition-opacity duration-500 max-w-4xl mx-auto text-center py-24">
+                <h1 class="text-8xl md:text-[12rem] font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-12 uppercase animate-pulse">Abra Ka Dabra</h1>
+                <div class="glass-card p-4 rounded-[40px] border-purple-500/20 inline-block overflow-hidden">
+                    <img src="assets/surprise.jpg" alt="Surprise - Abra Ka Dabra" class="rounded-[30px] shadow-2xl max-h-[600px] w-auto">
+                </div>
+                <div class="mt-12">
+                    <button onclick="router.navigate('store')" class="bg-white/5 border border-white/10 text-white font-black py-4 px-10 rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all text-[10px] uppercase tracking-widest font-orbitron">Return to Registry</button>
+                </div>
+            </div>
+
         </main>
 
         <footer class="bg-black/90 border-t border-white/5 py-32 mt-32">
@@ -465,7 +482,7 @@
     <!-- Final Component Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const views = { store: document.getElementById('store-view'), blog: document.getElementById('blog-view'), dashboard: document.getElementById('dashboard-view'), about: document.getElementById('about-view') };
+            const views = { store: document.getElementById('store-view'), blog: document.getElementById('blog-view'), dashboard: document.getElementById('dashboard-view'), about: document.getElementById('about-view'), surprise: document.getElementById('surprise-view') };
             
             window.router = {
                 navigate: (viewName) => {
