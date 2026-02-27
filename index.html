@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Yoast SEO Standard Meta Tags -->
-    <title>Best Kitchen Gadgets for Home Chefs - PowerLink.Gadgets 2026 Guide</title>
+    <title>PowerLink Gadgets | High-Performance Tech & AI-Driven Storefront</title>
     <meta name="description" content="Discover the best kitchen gadgets for home chefs to elevate your culinary skills. Our guide covers smart kitchen equipment and efficient meal preparation tools.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="best kitchen gadgets for home chefs, smart kitchen equipment, efficient meal preparation, PowerLink Gadgets, Karachi Tech">
@@ -89,9 +89,17 @@
         .star.active { color: #22c55e; filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.5)); }
         .view-section { transition: opacity 0.4s ease, transform 0.4s ease; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Toast Styling */
+        #toast-container { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100; pointer-events: none; }
+        .toast { background: rgba(34, 197, 94, 0.1); backdrop-filter: blur(20px); border: 1px solid rgba(34, 197, 94, 0.3); color: #22c55e; padding: 16px 32px; border-radius: 20px; font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-top: 10px; opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .toast.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="bg-brand-dark text-brand-light font-sans overflow-x-hidden">
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
 
     <!-- Auth Modal -->
     <div id="auth-modal" class="modal-overlay fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-xl">
@@ -105,7 +113,7 @@
                 <div id="auth-message" class="hidden p-4 rounded-2xl text-xs font-black text-center uppercase tracking-widest"></div>
                 <input type="email" id="auth-email" required class="w-full bg-black/40 border-2 border-white/5 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand-accent text-white font-bold" placeholder="Identity (Email)">
                 <input type="password" id="auth-password" required class="w-full bg-black/40 border-2 border-white/5 rounded-2xl px-5 py-4 focus:outline-none focus:border-brand-accent text-white font-bold" placeholder="••••••••">
-                <button type="submit" class="w-full bg-brand-accent text-brand-dark font-black py-5 rounded-2xl hover:bg-green-400 transition-all mt-4 uppercase tracking-widest text-xs font-orbitron">Execute Auth</button>
+                <button type="submit" class="w-full bg-brand-accent text-brand-dark font-black py-5 rounded-2xl hover:bg-green-400 transition-all mt-4 uppercase tracking-widest text-xs font-orbitron">Account Login</button>
             </form>
             <p class="text-center text-xs text-gray-500 mt-10 font-black uppercase tracking-widest">
                 <span id="auth-toggle-text">Unregistered?</span> 
@@ -121,7 +129,7 @@
             <div class="space-y-12 flex-grow">
                 <div>
                     <div class="flex justify-between mb-4">
-                        <label class="block text-[10px] font-black text-gray-600 uppercase tracking-widest">Price Discovery</label>
+                        <label class="block text-[10px] font-black text-gray-600 uppercase tracking-widest">Filter by Price</label>
                         <span id="price-display" class="text-sm font-black text-brand-accent">$0 - $2500</span>
                     </div>
                     <div class="relative h-10 flex items-center">
@@ -441,9 +449,15 @@
         </main>
 
         <footer class="bg-black/90 border-t border-white/5 py-32 mt-32">
-            <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-16 font-bold uppercase tracking-widest">
-                <span class="text-4xl font-black tracking-tighter text-white uppercase font-orbitron">PowerLink<span class="text-brand-accent">.Gadgets</span></span>
-                <p class="text-[10px] text-gray-800">&copy; 2026 Karachi Synergy Ops. All Rights Reserved.</p>
+            <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-16 font-bold uppercase tracking-widest text-center md:text-left">
+                <div class="space-y-4">
+                    <span class="text-4xl font-black tracking-tighter text-white uppercase font-orbitron">PowerLink<span class="text-brand-accent">.Gadgets</span></span>
+                    <p class="text-[10px] text-gray-800 tracking-[0.4em]">Karachi Engineering HQ • Karachi, PK</p>
+                </div>
+                <div class="flex flex-col items-center md:items-end space-y-4">
+                    <a href="mailto:syedahmedafrozshah25@gmail.com" class="text-brand-accent hover:text-white transition-all text-[11px] font-black border-b border-brand-accent/20 pb-1">Contact Nexus</a>
+                    <p class="text-[10px] text-gray-800">&copy; 2026 Karachi Synergy Ops. All Rights Reserved.</p>
+                </div>
             </div>
         </footer>
     </div>
@@ -516,6 +530,39 @@
             document.getElementById('close-auth-btn').addEventListener('click', () => { authModal.classList.remove('active'); document.body.classList.remove('modal-open'); });
 
             initSession(); lucide.createIcons();
+
+            // ================= PORTFOLIO OPTIMIZATIONS =================
+            const showToast = (message) => {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                container.appendChild(toast);
+                setTimeout(() => toast.classList.add('visible'), 100);
+                setTimeout(() => {
+                    toast.classList.remove('visible');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3000);
+            };
+
+            // Buy Now Triggers
+            document.querySelectorAll('button').forEach(btn => {
+                if(btn.textContent.includes('BUY NOW')) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showToast("Neural Connection Established: Item Added to Cart");
+                    });
+                }
+            });
+
+            // Dead Link Handling
+            document.querySelectorAll('a[href="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if(link.onclick) return; // Skip if it has an internal router function
+                    e.preventDefault();
+                    showToast("Module Under Development for Q2 2026");
+                });
+            });
         });
     </script>
 </body>
