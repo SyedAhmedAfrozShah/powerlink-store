@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://syedahmedafrozshah.github.io/powerlink-store/sitemap.xml
